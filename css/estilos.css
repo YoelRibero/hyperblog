@@ -35,6 +35,10 @@ body{
     font-size: 20px;
 }
 
+#post{
+    padding: 1em;
+    background: wheat;
+}
 #footer{
     background: #777;
     color: white;
