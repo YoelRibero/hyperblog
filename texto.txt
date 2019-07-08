@@ -1,0 +1,101 @@
+Introducción a la línea de comandos
+
+- pwd - Muestra dirección de carpeta donde nos encontramos.
+- cd - Lo utilizamos para navegar. Si colocamos / nos vamos a la home.
+- ls - Muestra los archivos dentro de la carpeta en la que estamos.
+- ls -al - Muestra todos los archivos incluso los ocultos y los trae en formato de lista.
+- ls -l - Muestra todos los archivos en formato de lista pero no muestra los archivos ocultos.
+- ls -a - Muestra todos los archivos incluso los ocultos pero no en formato de lista.
+- clear - Limpio la consola.
+- ctrl + l - Limpio consola.
+- cd/c - Me paro en el disco c.
+- cd .. - Me voy para la carpeta anterior.
+- Con la tecla tab la consola autocompleta.
+- mkdir folder_name - Con este comando creamos carpetas.
+- touch file_name - Este comando nos permite crear archivos vacíos.
+- cat file_name - Vemos el contenido del archivo.
+- history - Vemos la historia de comandos que hemos hecho hasta el momento.
+- Si queremos repetir un comando de la lista de history ponemos '!command_number' y lo vuelve a ejecutar.
+- rm - Lo utilizamos para borrar archivos CUIDADO CON ESTE comando.
+- command --help - Explica lo que hace ese comando.
+
+Git comandos
+
+- git rm --cached file_name - Con este comando saco el archivo de la zona de satging, osea de la zoana de add y vuelve a no estar trackeado.
+- git show file_name - Muestra los cambios que han existido sobre un archivo
+- Si no agregamos mensaje a nuestro commit se nos abre una ventana para que lo agreguemos. Ponemos el commit y cerramos la ventana presinando 'esq + z + z' o 'esq + shift + z + z' Para guardar y salir.
+- git diff commit_number1 commit_number2 - En git log tenemos los números de los commit, si queremos comparar dos commits utilizamos este comando, primero versión vieja despues versión actual.
+- git reset commit_number --hard - Este el reset duro, nos sirve para volver todo a este versión del commit.
+- git reset commit_number --soft - Este es el reset suave, donde los cambios que están en staging quedan ahí pero los cambios de ese commit vuelven a como estaban antes.
+- git log --stat - Visualizamos que cambios fueron hechos en cada commit.
+- git pull - Nos trae todo lo que hay en el repositorio del proyecto y actualiza nuestro proyecto a la última versión que está en el repositorio. Este es una convinación de git fetch + git merge.
+- git commit -am - Este comando nos ahorra tener que poner git add . , este comando agrega los archivos y además ya nos deja crear el commit a la vez. IMPORTANTE: Este comando solo funciona con archivos que previamente fueron agregados, osea archhivos traqueados por git.
+
+- El MERGE lo utilizamos para fusionar dos ramas. Lo que hacemos es fusionar el último commit de un branch con el último commit de la rama master. PARA HACER EL MERGE DEBO ESTAR PARADO EN LA RAMA MASTER PARA TRAERNOS A MASTER LO ÚLTIMO QUE HICIMOS EN EL OTRO BRANCH.
+
+- git pull origin master --allow-unrelated-histories - Esto lo usamos cuando nos dice que se reusará a fusionar historias no relacionadas. Esto significa que el commit que tenemos arriba no es de la misma historia que el que queremos pushear.
+
+- ~ este signo se hace presionando alt + 126
+
+- git remote -v - Con ese visualizamos las url de nuestro proyecto.
+- git romote set-url origin url - La utilizamos para cambiar la url de nuestro proyecto.
+- git log --all --graph - Nos muestra como se fueron fusionando los commits y branch de una forma gráfica.
+- git log --al --graph --decorate --oneline - Nos muestra lo mismo pero de una mejor manera.
+- en linux le podemos dar un alias a un comando para recordarlo con - $ alias arbolito="git log --all --graph --decorate --oneline"
+- git tag -a v0.1 -m "Mensaje de commit" - hash del commit - Con este comando creamos un tag de un commit.
+- git show-ref --tags - Con esto miramos a que commit está relacionado cada tag que tenemos creado.
+- git tag -d name_tag - De esa manera borrmos un tag de git.
+- git push origin master :refs/tags/name_tag - De esta manera borramos el tag en github también. refs es una referencia de los tags.
+
+- Entidades HTML es una forma de poner tílde en html, se hace poniendo &letraacute;.
+
+- Hacer un fork es tomar una copia de un proyecto al que no pertenezco y lo clono para poder aportar al mismo. Sólo funciona en proyectos públicos. Esta copia ocurre en git-hub osea clona el repositorio en git-hub no en git. Para clonarlo en mi local lo hacemos de la misma manera que antes pero desde mi fork.
+
+- recordar git remote add upstream urlproyecto - Para traernos los ultimos cambios de un proyecto al cual estamos contribuyendo.
+
+- .gitignore - Sirve para ignorar archivos, con *.jpg por ej ignoramos todos los archivos jpg. Es una buena práctica NO subir archivos binarios a nuestro repositorio.
+- Se considera buena práctica también tener un buen archivo readme.md
+
+- Un REBASE es agarrar todos los cambios hechos en una rama y pegarlos en mi rama master sin hacer merge, como si no hubiese pasado nada. MUY MALA PRÁCTICA. Sólo usar en local.
+- Para hacerlo tenemos que estar parados en la rama que queremos quitar y pegar en master y ejecutar el comando git rebase master.
+
+- Cuando hacemos un cambio que despues nos damos cuenta que no queríamos hacer, para volver los cambios atrás pero dejar guardados en algún lugar los cambios que hicimos mal, ejecutamos el comando git stash.
+- git stash list - lista todos los stash q realizamos.
+- git stash pop - recupero el cambio que había hecho anteriormente.
+- Cuando el cambio que hice lo quiero migrar a otra rama primero hacemos stash y luego ejecutamos el comando - git stash branch branch_name.
+- Para eliminar el stash que creamos ejecutamos - git stash drop
+
+- Cuando creamos archivos por error que no queremos, con git clean podemos borrarlos.
+- git clean --dry-run - Con este listamos los archivos que git va a borrar
+- git clean -f - borramos los archivos listados.
+- git borra archivos, NO carpetas.
+
+- git cherry-pick - lo usamos para traernos commits desde una rama a otra.
+- El comando correcto es git cherry-pick number-commit - el number commit lo sabemos haciendo git log en la rama donde tenemos el commit que nos queremos traer y copiando el número del commit que nos interesa.
+- Cherry pick No es una buena práctica.
+
+- Cuando tenemos varios cambios para hacer pero al terminar de hacer el commit nos damos cuenta que nos quedó un cambio por hacer que olvidamos, hacemos el cambio, lo agregamos con git add y luego ejecutamos el comando - git commit --amend - eso hará que nuestro cambio se ponga en el commit que realizamos antes.
+
+- Cuando hicimos muchos cambios mal y que no queremos para nada en nuestro proyectos podemos volver hacia atrás el mismo a cuando todo estaba correcto, esto lo hacemos con el comando - git reset que tiene dos variandotes --SOFT (deja los cambios que estaban en staging) y --HARD borra todo totalmente y te deja el proyecto en el HEAD que queremos.
+- git reset --HARD number_commit_head - USAR ESTO SOLO EN CASO DE EMERGENCIA.
+
+- git grep palabra - Lo usamos para saber cuantas veces aparece una palabra en mi proyecto.
+- git grep -c palabra - Nos dice cuantas veces aparece la palabra en cada uno de nuestros archivos.
+- Si queremos saber cuantas veces aparece una etiqueta debemos poner entre "".
+- git log -S "palabra" - Lo usamos para buscar palabras en los commits.
+
+- git shortlog - Nos muestra un log por persona de la cantidad de commits que ha hecho cada integrante del equipo.
+- git shortlog -sn - Nos muestra solo las personas que han hecho ciertos commits.
+- git shortlog -sn -all - Nos muestra lo mismo que el ant pero incluso los commits borrados.
+- git shortlog -sn -all --no-merges - Muestra lo mismo que arriba pero sin merges.
+- Es una buena idea agregar este último comando con un alias para que nos quede más facil de invocar - git config --global alias.stats "shortlog -sn -all --no-merges"
+
+- git blame file_name - veo que persona hizo que cosa en cada línea de código.
+- por ejemplo - git blame blogspot.html
+- también funciona git blame -c (se ve de mejor manera)
+- Si queremos ver un rango de líneas de código especial el comando es - git blame cdd/estilos.css -L35,53
+
+- git branch -r - Vemos las ramas que hay en github.
+- git branch -a - Vemos todas las ramas, tanto las locales(blancas, la que estamos parados sale en verde) como las remotas(rojas)
+
+- Si queremos saber por la web como funciona un comando le damos - git blame --help.
